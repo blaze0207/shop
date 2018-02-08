@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class UserAuthController extends Controller
 {
-    //
+    public function signUp()
+    {
+        $title = ['title' => '註冊'];
+        return view('auth.signUp', $title);
+    }
 }
