@@ -15,15 +15,16 @@ class CreateMerchandisesTable extends Migration
     {
         Schema::create('merchandises', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('status', 1);
-            $table->string('name', 80);
-            $table->string('name_en', 80);
+            $table->string('status', 1)->default('C');
+            $table->string('name', 80)->nullable();
+            $table->string('name_en', 80)->nullable();
             $table->text('introduction');
             $table->text('introduction_en');
-            $table->string('photo', 50);
-            $table->integer('price');
-            $table->integer('remain_count');
+            $table->string('photo', 50)->nullable();
+            $table->integer('price')->default(0);
+            $table->integer('remain_count')->default(0);
             $table->timestamps();
+            $table->index(['status'], 'merchandises_status_idx');
         });
     }
 

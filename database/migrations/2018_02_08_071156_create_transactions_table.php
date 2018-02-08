@@ -21,6 +21,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('buy_count');
             $table->integer('total_price');
             $table->timestamps();
+            $table->index(['user_id'], 'user_transaction_idx');
         });
     }
 
