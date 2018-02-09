@@ -11,4 +11,15 @@ class User extends Authenticatable
 
     protected $fillable = ['email', 'password', 'type', 'nickname'];
     protected $hidden = ['password', 'remember_token'];
+
+    public static function register($userInfo)
+    {
+        $user = User::create($userInfo->all());
+
+        if ($user) {
+            return response()->json(['status' => 'success']);
+        } else {
+            return response()->json(['status' => 'fail']);
+        }
+    }
 }
