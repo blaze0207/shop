@@ -14,9 +14,19 @@ class UserAuthService
         $this->userAuthRepository = $userAuthRepository;
     }
 
-    public function register($registerInfo)
+    public function register($request)
     {
-        $registerInfo['password'] = Hash::make($registerInfo['password']);
-        return $this->userAuthRepository->register($registerInfo);
+        $request['password'] = Hash::make($request['password']);
+        return $this->userAuthRepository->register($request);
+    }
+
+    public function checkEmail($email)
+    {
+        return $this->userAuthRepository->checkUserLogInEmail($email);
+    }
+
+    public function checkPassword($password, $userPassword)
+    {
+        return $this->userAuthRepository->checkPassword($password, $userPassword);
     }
 }

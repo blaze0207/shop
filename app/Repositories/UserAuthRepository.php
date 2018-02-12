@@ -13,8 +13,18 @@ class UserAuthRepository
         $this->user = $user;
     }
 
-    public function register($registerInfo)
+    public function register($request)
     {
-        return $this->user->register($registerInfo);
+        return $this->user->register($request);
+    }
+
+    public function checkUserLogInEmail($email)
+    {
+        return $this->user->getUserInfo($email);
+    }
+
+    public function checkPassword($password, $userPassword)
+    {
+        return $this->user->checkPassword($password, $userPassword);
     }
 }

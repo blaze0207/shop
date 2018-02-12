@@ -1,8 +1,4 @@
-@extends('layouts.master')
-@section('title', $title)
-
-@section('content')
-{{--  @include('components.socialButton')  --}}
+@extends('layouts.master') @section('title', $title) @section('content')
 <div class="signUp">
   <form class="signUp__form" action="/user/auth/sign-up" method="post">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -42,17 +38,21 @@
 
 <style>
   .signUp {
-    display: flex;
-    justify-content: center;
     align-items: center;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    height: 100%
   }
+
   .signUp__form {
     width: 50%
   }
+
   .signUp__form-title {
     text-align: center
   }
+
   .signUp__form-send {
     text-align: center
   }

@@ -7,7 +7,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::group(['prefix' => 'auth'], function () {
         Route::get('sign-up', 'UserAuthController@signUp');
         Route::post('sign-up', 'UserAuthController@postSignUp');
-        Route::get('sign-in', 'UserAuthController@signUp');
+        Route::get('sign-in', 'UserAuthController@signIn');
         Route::post('sign-in', 'UserAuthController@postSignIn');
         Route::get('sign-out', 'UserAuthController@signOut');
     });
