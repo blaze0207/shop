@@ -55,9 +55,15 @@ class UserAuthController extends Controller
             if ($check_password['password']) {
                 return redirect('user/auth/sign-in')->withErrors($check_password['password'])->withInput();
             } else {
-                // return redirect('/');
-                return 'login success';
+                session()->put('user_id', $user->id);
+                return redirect()->intended('/');
             }
         }
+    }
+
+    public function signOut()
+    {
+        session()->forget('user_id');
+        return redirect('/');
     }
 }

@@ -15,8 +15,12 @@
 <body>
 	<div class="container">
 		<div class="welcome">
-			<a href="/user/auth/sign-up">註冊</a>
-			<a href="/user/auth/sign-in">登入</a>
+			@if (session()->has('user_id'))
+				<a href="/user/auth/sign-out">登出</a>
+			@else
+				<a href="/user/auth/sign-up">註冊</a>
+				<a href="/user/auth/sign-in">登入</a>
+			@endif
 		</div>
 	</div>
 </body>

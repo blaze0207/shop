@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'HomeController@index');
 
 //使用者
@@ -17,14 +19,19 @@ Route::group(['prefix' => 'user'], function () {
 
 Route::group(['prefix' => 'merchandise'], function () {
     Route::get('/', 'MerchandiseController@merchandiseList');
-    Route::get('create', 'MerchandiseController@merchandiseCreate');
-    Route::get('manage', 'MerchandiseController@merchandiseManage');
+
+    Route::group(['middleware' => ['user.auth.admin']], function () {
+        Route::get('create', 'MerchandiseController@merchandiseCreate');
+        Route::get('manage', 'MerchandiseController@merchandiseManage');
+    }) ;
 
     Route::group(['prefix' => '{merchandise_id}'], function () {
+        Route::group(['middleware' => ['user.auth.admin']], function () {
+            Route::get('edit', 'MerchandiseController@merchandiseItemEdit');
+            Route::put('/', 'MerchandiseController@merchandiseItemUpdate');
+        });
         Route::get('/', 'MerchandiseController@merchandiseItem');
-        Route::get('edit', 'MerchandiseController@merchandiseItemEdit');
-        Route::put('/', 'MerchandiseController@merchandiseItemUpdate');
-        Route::post('buy', 'MerchandiseController@merchandiseItemBuy');
+        Route::post('buy', 'MerchandiseController@merchandiseItemBuy')->middleware(['user.auth']);
     });
 });
 
